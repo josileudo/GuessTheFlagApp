@@ -8,38 +8,25 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var showAlert: Bool = false
+    
     var body: some View {
-        
-//        MARK: About Buttons style
-        
         VStack {
             Button("Button 1", action: clickMe)
                 .buttonStyle(.bordered)
-            
-            Button("Button 2", role: .destructive, action: clickMe)
-                .buttonStyle(.borderedProminent)
-            
-            Button("Button 3", action: clickMe)
-                .buttonStyle(.borderedProminent)
-                .tint(.green)
-            
-            Button("Button 4", action: clickMe)
-                .buttonStyle(.plain)
-            
-            Button {
-               print("clicked")
-            } label: {
-                Label("Click", systemImage: "pencil")
-                    .padding()
-                    .foregroundColor(.white)
-                    .background(.purple)
-            }
+                
         }
-        
+        .alert("Hello peoples", isPresented: $showAlert) {
+            Button("Close", role: .destructive) {}
+            Button("Cancel", role: .cancel) {}
+        } message: {
+            Text("Your phone has low getter")
+        }
     }
     
     func clickMe() {
         print("Hello word")
+        showAlert = true
     }
 }
 
